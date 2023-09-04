@@ -56,4 +56,9 @@ public class EventServiceImpl implements EventService {
             event.setClub(eventDto.getClub());
             eventRepository.save(event);
     }
+
+    @Override
+    public void deleteEvent(Integer id) {
+        eventRepository.deleteById(id);
+    }
 }

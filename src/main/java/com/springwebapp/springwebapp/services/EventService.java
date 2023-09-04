@@ -12,5 +12,5 @@ public interface EventService   {
     EventDto FindByEventId(Integer eventId);
     void updateEvent(EventDto eventDto);
 
-
+    void deleteEvent(Integer id);
 }
