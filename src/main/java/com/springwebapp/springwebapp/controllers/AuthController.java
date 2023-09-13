@@ -28,14 +28,16 @@ public class AuthController {
     @PostMapping("/register/save")
     public String register(@Valid @ModelAttribute("user") RegistrationDto user, BindingResult result, Model model){
         UserEntity existingUserEmail = userService.findByEmail(user.getEmail());
-        if(existingUserEmail != null) //&& existingUserEmail.getEmail() != null)
+        if(existingUserEmail != null && existingUserEmail.getEmail() != null)
         {
             result.hasErrors();
+            return "redirect:/clubs?unsuccess";
         }
         UserEntity existingUserUsername = userService.findByUsername(user.getUsername());
-        if(existingUserUsername != null) //&& existingUserUsername.getUsername() != null)
+        if(existingUserUsername != null && existingUserUsername.getUsername() != null)
         {
             result.hasErrors();
+            return "redirect:/clubs?unsuccess";
 
         }
         if(result.hasErrors()) {
@@ -48,6 +50,15 @@ public class AuthController {
 
 
     }
+    @GetMapping("/login")
+    public String loginPage(){
+        return "login";
+    }
+
+
+
+
+
 
 
 }
